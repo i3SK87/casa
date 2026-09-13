@@ -10,6 +10,7 @@
     "./tema": "./src/tema.ts",
     "./paletas": "./src/paletas.ts",
     "./ui": "./src/ui.tsx",
+    "./menu": "./src/menu.tsx",
     "./marca": "./marca/marca.mjs"
   },
   "peerDependencies": {

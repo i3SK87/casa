@@ -171,6 +171,8 @@ textarea::placeholder {
 
 .nav-item > svg { flex: none; }
 
+/* La del clic derecho, marcada mientras su menú está abierto. */
+.nav-item.marcada,
 .nav-item:hover {
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
@@ -202,6 +204,61 @@ textarea::placeholder {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/*
+ * El aviso de versión nueva, bajo Ajustes, el de BONK.
+ *
+ * Tiene que verse sin gritar: un recuadro tenue del color de acento y la letra
+ * clara. Descargando, lo bajado se pinta por detrás del texto; ya descargada,
+ * lleva el acento entero, que ahí sí hay algo que pulsar.
+ */
+.aviso-version {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 4px;
+  padding: 7px 11px;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.aviso-version:disabled { cursor: default; }
+
+.aviso-version:not(:disabled):hover {
+  background: color-mix(in srgb, var(--accent) 26%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 65%, transparent);
+}
+
+.aviso-version.lista {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.aviso-version.lista:not(:disabled):hover {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.aviso-version .llenado {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+  pointer-events: none;
+  transition: width 0.3s linear;
+}
+
+.aviso-version > :not(.llenado) { position: relative; }
 
 .sidebar-footer {
   margin-top: auto;
@@ -241,6 +298,8 @@ textarea::placeholder {
   .sidebar .sidebar-section,
   .sidebar .solo-ancha { display: none; }
   .sidebar-footer { width: 100%; }
+  .sidebar .aviso-version { justify-content: center; gap: 0; padding-left: 0; padding-right: 0; }
+  .sidebar .aviso-version .truncate { display: none; }
 }
 
 .main {
@@ -949,6 +1008,86 @@ kbd {
 }
 
 .link:hover { text-decoration: underline; }
+
+/*
+ * El menú del clic derecho, el de BONK.
+ *
+ * Por encima de todo —también de los velos de los diálogos— porque se abre
+ * sobre lo que ya hay en pantalla. Ancho mínimo para que opciones de largos
+ * distintos no dibujen un escalón.
+ */
+.menu-contextual {
+  position: fixed;
+  z-index: 300;
+  min-width: 194px;
+  padding: 5px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  animation: menu-contextual 0.1s ease both;
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+}
+
+/* Corto y sin desplazamiento: sale donde has pulsado y ahí tiene que estar ya. */
+@keyframes menu-contextual {
+  from { opacity: 0; transform: scale(0.97); }
+}
+
+.menu-contextual-opcion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: calc(var(--radius) - 4px);
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menu-contextual-opcion svg { flex: none; color: var(--fg-muted); }
+.menu-contextual-hueco { flex: none; width: 15px; }
+.menu-contextual-opcion.marcada { background: var(--bg-sunken); }
+
+.menu-contextual-pista {
+  margin-left: auto;
+  padding-left: 16px;
+  font-size: 12px;
+  color: var(--fg-subtle);
+  white-space: nowrap;
+}
+
+.menu-contextual-opcion:hover,
+.menu-contextual-opcion:focus-visible {
+  background: var(--bg-sunken);
+  outline: none;
+}
+
+/* Borrar, en rojo y con una raya por encima: es lo único que no se deshace. */
+.menu-contextual-opcion.peligrosa {
+  margin-top: 5px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 calc(var(--radius) - 4px) calc(var(--radius) - 4px);
+  color: var(--negative);
+}
+
+.menu-contextual-opcion.peligrosa svg { color: var(--negative); }
+
+/* Sola no separa de nada: sin raya ni hueco. Y dos seguidas, una sola raya. */
+.menu-contextual-opcion.peligrosa:first-child,
+.menu-contextual-opcion.peligrosa + .menu-contextual-opcion.peligrosa {
+  margin-top: 0;
+  padding-top: 8px;
+  border-top: 0;
+  border-radius: calc(var(--radius) - 4px);
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,

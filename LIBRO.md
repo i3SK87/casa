@@ -80,6 +80,8 @@ Para una aplicación nueva: se añade su nombre al final de `FAMILIA` y su dibuj
   paleta.
 - `src/tema.ts` — poner el tema antes del primer fotograma, sin fogonazo.
 - `src/paletas.ts` — la lista de paletas para el selector de Ajustes.
+- `src/menu.tsx` — `MenuContextual` y `useMenu`: el clic derecho de BONK, con
+  los iconos de Lucide.
 - `src/ui.tsx` — `Modal`, `Confirm`, `AvisosProvider`/`useAvisos`, `Field`,
   `Checkbox`, `Segmented`, `EmptyState`, `Loading` y `SelectorPaleta`.
 - `marca/marca.mjs` — la regla del icono, y el PNG y el ICO escritos a mano.
