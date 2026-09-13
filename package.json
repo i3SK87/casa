@@ -1,0 +1,20 @@
+{
+  "name": "casa",
+  "version": "0.1.0",
+  "description": "Lo que comparten las aplicaciones de la casa: paletas, piezas de interfaz y la regla del icono",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./paletas.css": "./estilos/paletas.css",
+    "./base.css": "./estilos/base.css",
+    "./tema": "./src/tema.ts",
+    "./paletas": "./src/paletas.ts",
+    "./ui": "./src/ui.tsx",
+    "./marca": "./marca/marca.mjs"
+  },
+  "peerDependencies": {
+    "lucide-react": ">=1",
+    "react": ">=19",
+    "react-dom": ">=19"
+  }
+}

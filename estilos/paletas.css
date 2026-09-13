@@ -1,0 +1,473 @@
+/* ============================================================
+   La casa — paletas
+
+   Copiadas tal cual de BONK (src/renderer/src/styles.css, líneas
+   17-473, versión 2.31.0). Son las mismas nueve paletas, en claro
+   y en oscuro, con los mismos doce tonos que cada una redefine.
+   Una paleta nueva se añade aquí y la estrenan todas las
+   aplicaciones de la casa a la vez.
+
+   Los colores del significado (verde, rojo, ámbar) NO cambian con
+   la paleta. En BONK son el dinero; en las demás, lo que está bien,
+   lo que está mal y lo que avisa.
+
+   Contrastes medidos: 7:1 el texto principal, 4,5:1 el atenuado y
+   el blanco sobre el botón de acento, 3:1 el texto sutil.
+   ============================================================ */
+:root {
+  /* — Paleta base: Grafito, claro — */
+  --accent: #0b6bd3;
+  --accent-strong: #0b63c4;
+  --bg: #f2f3f7;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #e9ebf0;
+  --fg: #14161a;
+  --fg-muted: #5c636e;
+  --fg-subtle: #767e8c;
+  --border: #dfe2e8;
+  --border-strong: #c8ccd4;
+  --sidebar-bg: #1c1f26;
+  --sidebar-fg: #a8b0bd;
+
+  /* — Significado: el dinero no cambia de color con la decoración — */
+  --positive: #157f3d;
+  --negative: #c0271c;
+  --warning: #a35a00;
+
+  /* — Derivados: se recalculan solos al cambiar de paleta — */
+  --accent-soft: color-mix(in srgb, var(--accent) 13%, transparent);
+  --accent-contrast: #ffffff;
+  --positive-soft: color-mix(in srgb, var(--positive) 14%, transparent);
+  --negative-soft: color-mix(in srgb, var(--negative) 13%, transparent);
+  --warning-soft: color-mix(in srgb, var(--warning) 15%, transparent);
+  --sidebar-fg-active: #ffffff;
+  --sidebar-active-bg: rgba(255, 255, 255, 0.1);
+  --grid: var(--border);
+  --link-line: var(--border-strong);
+
+  /* Series de las gráficas. Azul y naranja en vez del verde/rojo del texto:
+     ese par no separa lo suficiente para daltonismo (ΔE 5,2 frente al mínimo de 8).
+     Son fijas en todas las paletas, por la misma razón que el verde y el rojo. */
+  --series-income: #2a78d6;
+  --series-expense: #eb6834;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 4px 16px rgba(16, 24, 40, 0.1);
+  --shadow-lg: 0 18px 48px rgba(16, 24, 40, 0.18);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  --font: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "Cascadia Mono", "Consolas", monospace;
+}
+
+:root[data-theme="dark"] {
+  /* — Paleta base: Grafito, oscuro — */
+  --accent: #6fb0ff;
+  --accent-strong: #1f6feb;
+  --bg: #14161a;
+  --bg-elevated: #1d2027;
+  --bg-sunken: #101216;
+  --fg: #eef0f4;
+  --fg-muted: #98a1af;
+  --fg-subtle: #79828f;
+  --border: #2b303a;
+  --border-strong: #3a4150;
+  --sidebar-bg: #0f1115;
+  --sidebar-fg: #8b93a1;
+
+  --positive: #40d873;
+  --negative: #ff6961;
+  --warning: #ffb340;
+
+  --accent-soft: color-mix(in srgb, var(--accent) 18%, transparent);
+  --sidebar-active-bg: rgba(255, 255, 255, 0.08);
+  --series-income: #3987e5;
+  --series-expense: #d95926;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 52px rgba(0, 0, 0, 0.6);
+}
+
+/* Índigo */
+:root[data-palette="indigo"] {
+  --accent: #5145cd;
+  --accent-strong: #4c3fc4;
+  --bg: #f2f2fa;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #e9e9f5;
+  --fg: #1a1830;
+  --fg-muted: #5d5a75;
+  --fg-subtle: #7a7794;
+  --border: #e0dff0;
+  --border-strong: #c7c5de;
+  --sidebar-bg: #211f38;
+  --sidebar-fg: #aeaacb;
+}
+
+/* Marea */
+:root[data-palette="marea"] {
+  --accent: #00706b;
+  --accent-strong: #00695f;
+  --bg: #eef4f4;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #e3eded;
+  --fg: #0f1e1e;
+  --fg-muted: #54666a;
+  --fg-subtle: #6f8286;
+  --border: #d8e4e4;
+  --border-strong: #bccbcb;
+  --sidebar-bg: #122726;
+  --sidebar-fg: #9db5b3;
+}
+
+/* Heat — el azul acero de la noche de Los Ángeles y el ámbar de las farolas
+   de sodio. De día la película es hormigón y cristal, y así es esta. */
+:root[data-palette="heat"] {
+  --accent: #1c6d8f;
+  --accent-strong: #185f7d;
+  --bg: #eef2f4;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #e3eaee;
+  --fg: #101a1f;
+  --fg-muted: #55666f;
+  --fg-subtle: #6f8189;
+  --border: #d8e2e6;
+  --border-strong: #bccad1;
+  --sidebar-bg: #0e191e;
+  --sidebar-fg: #98aab4;
+  --warning: #c1690c;
+  --series-income: #1c6d8f;
+  --series-expense: #d4762b;
+}
+
+/* Sepia */
+:root[data-palette="sepia"] {
+  --accent: #8a5416;
+  --accent-strong: #7d4c13;
+  --bg: #f4efe4;
+  --bg-elevated: #fffcf5;
+  --bg-sunken: #eae3d3;
+  --fg: #241f17;
+  --fg-muted: #655c4c;
+  --fg-subtle: #827865;
+  --border: #e2d9c7;
+  --border-strong: #c8bda6;
+  --sidebar-bg: #2b241a;
+  --sidebar-fg: #b8ac97;
+}
+
+/* Ciruela */
+:root[data-palette="ciruela"] {
+  --accent: #9c2f6d;
+  --accent-strong: #8f2b64;
+  --bg: #f8f1f5;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #f0e5ec;
+  --fg: #22141d;
+  --fg-muted: #66535e;
+  --fg-subtle: #836f7b;
+  --border: #ecdfe7;
+  --border-strong: #d3c1cc;
+  --sidebar-bg: #2a1a24;
+  --sidebar-fg: #bda6b4;
+}
+
+/*
+ * Arasaka.
+ *
+ * Negro corporativo y rojo, lo de la megacorporación de Cyberpunk 2077. Los
+ * neutros van fríos y desaturados a propósito —acero, no gris de fábrica—:
+ * las otras seis paletas tiran a cálidas, y es ese frío lo que deja al rojo
+ * como la única nota caliente de la pantalla.
+ *
+ * En claro el rojo baja a granate: el rojo de neón sobre papel blanco no
+ * sostiene el texto en blanco de los botones.
+ */
+:root[data-palette="arasaka"] {
+  --accent: #b8121f;
+  --accent-strong: #a10f1b;
+  --bg: #eff1f3;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #e2e5e9;
+  --fg: #101215;
+  --fg-muted: #565d66;
+  --fg-subtle: #757d87;
+  --border: #dce0e5;
+  --border-strong: #bfc5cd;
+  --sidebar-bg: #101216;
+  --sidebar-fg: #8d949d;
+}
+
+/*
+ * Ghost in the Shell (1995) — de día.
+ *
+ * Los tonos no están elegidos a ojo: salen de medir 51 fotogramas de la
+ * película —los de la galería de Film-Grab, en orden— agrupando sus 2,8
+ * millones de píxeles por color en OKLab.
+ *
+ * Lo que enseñó la medición y no se ve mirando: la película tiene color en el
+ * 8,5 % de su superficie y nada más. Pero el hallazgo que gobierna esta paleta
+ * es otro: hay un **cálido constante** —un ladrillo apagado, #845a4a, que
+ * aparece en casi todo el metraje en forma de óxido, madera, piel y luz de
+ * sodio— y sostiene el 4,4 % de la película. Sin él, el frío no se lee como
+ * frío. Una paleta hecha entera en frío sale muerta, y salió muerta dos veces.
+ *
+ * De ahí la estructura de esta versión, que es la del día de la película: el
+ * papel es el **hormigón cálido** de las calles del mercado —los fotogramas
+ * 16, 17, 19, 20, 26 y 32 son todos ocres y marrones—, y encima van las dos
+ * cosas frías, la **barra de pizarra azulada** (#2b343d, el tercer color más
+ * repetido, 14,3 % de la superficie) y el **azul de los monitores** de la
+ * Sección 9. Frío recortado contra cálido, que es como está rodada.
+ *
+ * El acento no es el aqua de la noche a propósito: de día no hay neón, y
+ * pintarlo aquí era encender una farola a mediodía.
+ */
+:root[data-palette="ghost"] {
+  --accent: #266296;
+  --accent-strong: #21578a;
+  --bg: #e3ddd6;
+  --bg-elevated: #f4f1ec;
+  --bg-sunken: #d6cec4;
+  --fg: #201c19;
+  --fg-muted: #5d564d;
+  --fg-subtle: #79705f;
+  --border: #d2cabf;
+  --border-strong: #b3a99c;
+  --sidebar-bg: #2b343d;
+  --sidebar-fg: #aeb9c1;
+  --sidebar-fg-active: #ffffff;
+  --sidebar-active-bg: rgba(255, 255, 255, 0.13);
+  --warning: #8a6420;
+  --series-income: #1c6a75;
+  --series-expense: #9c4a3c;
+}
+/*
+ * Blade Runner 2049 — de día.
+ *
+ * Medida igual que Ghost: 65 fotogramas de la galería de Film-Grab, 3,6
+ * millones de píxeles agrupados por color en OKLab. Pero esta película pedía
+ * medirse de otra manera, porque no tiene un grado de color: tiene cinco
+ * mundos que no se parecen en nada —el gris verdoso de Los Ángeles, el ámbar
+ * de Las Vegas, el violeta de los hologramas, el azul profundo de la noche y
+ * el verde del bosque—, y medida entera de una vez devuelve un caqui que no
+ * está en ningún fotograma.
+ *
+ * De los cinco, esta paleta usa **el azul profundo**: el vuelo nocturno, el
+ * escenario del hotel y el sueño. Sus siete colores medidos son todo lo que
+ * hay aquí, salvo el acento.
+ *
+ * De día el mundo azul no existe —es de noche entero—, así que el papel es su
+ * propio claro llevado a la luz: el verde azulado pálido que ilumina esas
+ * escenas. La barra lateral se queda con el azul medio medido, que es el único
+ * sitio donde el mundo se ve tal cual a plena luz.
+ */
+:root[data-palette="2049"] {
+  --accent: #7c2a66;
+  --accent-strong: #6b2359;
+  --bg: #dbe4e1;
+  --bg-elevated: #f1f5f3;
+  --bg-sunken: #cbd7d3;
+  --fg: #0b1020;
+  --fg-muted: #45565f;
+  --fg-subtle: #63737a;
+  --border: #c6d2ce;
+  --border-strong: #a6b3af;
+  --sidebar-bg: #031c3b;
+  --sidebar-fg: #a8bccc;
+  --sidebar-fg-active: #ffffff;
+  --sidebar-active-bg: rgba(224, 122, 192, 0.18);
+  --warning: #8a5210;
+  --series-income: #1d5c85;
+  --series-expense: #a35a12;
+}
+
+:root[data-theme="dark"][data-palette="indigo"] {
+  --accent: #a5a0ff;
+  --accent-strong: #5b4fd6;
+  --bg: #151420;
+  --bg-elevated: #1f1d33;
+  --bg-sunken: #111020;
+  --fg: #eeecf7;
+  --fg-muted: #a09cc0;
+  --fg-subtle: #7d799e;
+  --border: #302d4c;
+  --border-strong: #413d64;
+  --sidebar-bg: #100f1c;
+  --sidebar-fg: #918dae;
+}
+
+:root[data-theme="dark"][data-palette="marea"] {
+  --accent: #5fd8c4;
+  --accent-strong: #0d7d70;
+  --bg: #0f1918;
+  --bg-elevated: #182625;
+  --bg-sunken: #0b1413;
+  --fg: #e8f2f0;
+  --fg-muted: #94aeab;
+  --fg-subtle: #748c8a;
+  --border: #263936;
+  --border-strong: #345049;
+  --sidebar-bg: #0a1211;
+  --sidebar-fg: #87a19e;
+}
+
+:root[data-theme="dark"][data-palette="sepia"] {
+  --accent: #e0ac5c;
+  --accent-strong: #8a5a17;
+  --bg: #1a1714;
+  --bg-elevated: #241f1b;
+  --bg-sunken: #13100e;
+  --fg: #f1ebe1;
+  --fg-muted: #ab9f8e;
+  --fg-subtle: #8a7f6f;
+  --border: #372f28;
+  --border-strong: #4b4238;
+  --sidebar-bg: #141110;
+  --sidebar-fg: #9b9081;
+}
+
+/* De noche es cuando la película es la película: azul de acero, negros que
+   tiran a verde y el naranja del sodio para lo que quema. */
+:root[data-theme="dark"][data-palette="heat"] {
+  --accent: #5fb0d4;
+  --accent-strong: #2b7ea6;
+  --bg: #0e1418;
+  --bg-elevated: #162026;
+  --bg-sunken: #0a1014;
+  --fg: #e8eff3;
+  --fg-muted: #93a6b1;
+  --fg-subtle: #728691;
+  --border: #223037;
+  --border-strong: #31434c;
+  --sidebar-bg: #080d10;
+  --sidebar-fg: #8598a3;
+  --warning: #ffa53d;
+  --series-income: #4aa6cf;
+  --series-expense: #e0762c;
+}
+
+/*
+ * La de verdad: negro casi puro y el rojo encendido.
+ *
+ * El rojo del acento y el de `--negative` son primos, y aquí conviven a
+ * propósito: el acento sale siempre relleno —botones, pastilla activa— y las
+ * cifras en rojo van sueltas sobre el fondo, así que se distinguen por la
+ * forma. Aun así el acento va más frío y más oscuro que el rojo salmón de los
+ * importes, para que no se confundan a media distancia.
+ */
+:root[data-theme="dark"][data-palette="arasaka"] {
+  --accent: #ff3b47;
+  --accent-strong: #b8121f;
+  --bg: #0b0c0e;
+  --bg-elevated: #15171b;
+  --bg-sunken: #07080a;
+  --fg: #eceef1;
+  --fg-muted: #939aa4;
+  --fg-subtle: #737a84;
+  --border: #24272d;
+  --border-strong: #343941;
+  --sidebar-bg: #050607;
+  --sidebar-fg: #868d97;
+
+  /* Sobre un negro casi puro, la sombra de siempre no se ve: se recorta el
+     borde en vez de dibujar un halo que no existe. */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.7);
+  --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.75);
+  --shadow-lg: 0 20px 52px rgba(0, 0, 0, 0.85);
+}
+
+/*
+ * Ghost in the Shell (1995) — de noche, que es cuando la película es la
+ * película.
+ *
+ * El fondo es el negro que más se repite en los 51 fotogramas, y no es negro:
+ * es violeta. Los cuatro oscuros que gobiernan el metraje caen todos entre los
+ * tonos 273 y 299 —el sector violeta—, ninguno en el verde. Es lo contrario de
+ * lo que dice la memoria, que la recuerda verdosa por culpa del primer minuto.
+ *
+ * Aquí los neutros van fríos de arriba abajo, y el cálido solo entra por lo
+ * que se enciende: el **aqua del neón** de la persecución nocturna manda, y el
+ * **oro del tanque** de la fábrica avisa. Las dos series de las gráficas son el
+ * azul de los monitores de la Sección 9 y el ladrillo de los toldos del
+ * mercado: siguen siendo un frío y un cálido, que es lo que las separa para un
+ * daltónico.
+ *
+ * La tensión de temperatura que lleva la versión de día —papel cálido, encima
+ * lo frío— es cosa suya y no de esta: de noche la película es fría y se queda
+ * fría.
+ */
+:root[data-theme="dark"][data-palette="ghost"] {
+  --accent: #6ae7e6;
+  --accent-strong: #1d6d78;
+  --bg: #12101a;
+  --bg-elevated: #1c1a26;
+  --bg-sunken: #0b0911;
+  --fg: #dee2ec;
+  --fg-muted: #9aa0b6;
+  --fg-subtle: #7a7f95;
+  --border: #2b2839;
+  --border-strong: #3b3850;
+  --sidebar-bg: #0a0810;
+  --sidebar-fg: #8b90a6;
+  --sidebar-fg-active: #ffffff;
+  --sidebar-active-bg: rgba(106, 231, 230, 0.16);
+  --warning: #d9a253;
+  --series-income: #4f98cd;
+  --series-expense: #b8564f;
+}
+/*
+ * Blade Runner 2049 — de noche, que es cuando el mundo azul ocurre.
+ *
+ * El fondo es el color que más manda de ese mundo: un azul violáceo casi negro
+ * que ocupa el 35,7 % de sus fotogramas. Y la tinta no es blanca sino el
+ * **verde azulado pálido** que ilumina esas escenas (#9ab9ac, el claro del
+ * mundo): sostiene 9,3:1 sobre el fondo, muy por encima del 7:1 de la casa, y
+ * es lo que hace que la pantalla parezca alumbrada por el agua y no por una
+ * bombilla.
+ *
+ * El acento es el violeta del holograma de Joi, elegido por encima del ámbar
+ * de Las Vegas —que es dos tercios de todo el color de la película— por una
+ * razón práctica: el ámbar significa aviso en BONK, y tenerlo también en los
+ * botones le quitaba el susto. El violeta, en cambio, no comparte sector con
+ * nada: ni con el verde de los ingresos, ni con el rojo de los gastos, ni con
+ * el ámbar. Así el aviso se queda con su ámbar, que además es el de Las Vegas.
+ */
+:root[data-theme="dark"][data-palette="2049"] {
+  --accent: #e07ac0;
+  --accent-strong: #7c2a66;
+  --bg: #070919;
+  --bg-elevated: #0f1730;
+  --bg-sunken: #020207;
+  --fg: #9ab9ac;
+  --fg-muted: #6a94a9;
+  --fg-subtle: #527989;
+  --border: #1b2547;
+  --border-strong: #2b3a63;
+  --sidebar-bg: #020207;
+  --sidebar-fg: #6d8ea3;
+  --sidebar-fg-active: #ffffff;
+  --sidebar-active-bg: rgba(224, 122, 192, 0.18);
+  --warning: #e0993d;
+  --series-income: #4f88b5;
+  --series-expense: #c07a30;
+}
+
+:root[data-theme="dark"][data-palette="ciruela"] {
+  --accent: #f090c4;
+  --accent-strong: #a03272;
+  --bg: #1a1218;
+  --bg-elevated: #241a21;
+  --bg-sunken: #120c10;
+  --fg: #f4eaf0;
+  --fg-muted: #b39aa8;
+  --fg-subtle: #8f7885;
+  --border: #3a2b34;
+  --border-strong: #4e3a46;
+  --sidebar-bg: #150e13;
+  --sidebar-fg: #a48f9c;
+}
